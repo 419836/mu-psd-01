@@ -31,7 +31,7 @@ wingetが使えない場合等、個別の入手先は以下のリンクを参�
 ```
 mkdir C:\source 
 cd C:\source
-git clone https://github.com/tt-hasegawa/mu-psd-01.git
+git clone https://github.com/tt-hasegawa/mu-psd-10.git
 ```
 
 01のところは事前に割り当てられた01から09までの番号を利用してください。
