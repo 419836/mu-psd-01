@@ -9,65 +9,151 @@ Frontend担当者とBackend担当者に分割して開発する前提で、Pytho
 --------------------------------------------------------------------------------
 # ソフトウェアのインストール
 
-winget install Node.js
+コマンドプロンプトから、以下のコマンドを実行して、必要なソフトウェアをインストールしてください。
+
+```
+winget install OpenJS.NodeJS.LTS
 winget install Python
-winget install git
-winget install vscode
+winget install Git.Git
+winget install Microsoft.VisualStudioCode
+```
+
+wingetが使えない場合等、個別の入手先は以下のリンクを参照してください。
+
+- https://nodejs.org/en
+- https://www.python.org/downloads/　
+- https://code.visualstudio.com/download
+- https://gitforwindows.org/
 
 --------------------------------------------------------------------------------
 # テンプレートプロジェクトの取得
 
-git clone https://github.com/tt-hasegawa/ppp-sample01.git
+```
+mkdir C:\source 
+cd C:\source
+git clone https://github.com/tt-hasegawa/mu-psd-01.git
+```
 
-ペアの人と同じリポジトリを利用してください。
-
+01のところは事前に割り当てられた01から09までの番号を利用してください。
+また、ペアの人と同じリポジトリを利用してください。
 
 --------------------------------------------------------------------------------
 
 # サーバサイド開発
 Python + Flaskを用いて開発します。
 リクエストされたURLに応じて、必要なリソースを返したり、
-リソースへの登録／更新を行う部分を担当します。
+データベースへの登録／更新／参照を行う部分を担当します。
 
-python3をインストールします。
-python -m venv .venv
-.venv\Scripts\activate
+## ライブラリのインストール
+
+```
+cd backend
 pip install flask flask-cors pickledb
+```
 
 ## 実行方法
+```
+cd backend
 python server.py
+```
 
 http://localhost:5000/
 
-にアクセスしてみましょう。
+にアクセスして動きを確認してみましょう。
+
+## ソースの解説
+
+- ソースファイルは基本的に、Server.py1個だけ。
+- 10行目までと最後2行は定型文なので、基本的に触る必要はありません。
+- @app.route(…)がURLを表します。
+- 次行の関数がそのロジック実装になります。
+- 関数の戻り値がBackendサーバで表示される値になります。
+
+## データベースについて
+
+今回の演習サンプルではPickleDBというシンプルなKey-Value型データベースを取り扱います。
+キーの名前が付いた入れ物にデータを入れるだけの簡単なデータベースです。
+
+- キー値keyに変数valを保存するときは、
+```
+db.set(key,val);
+db.dump();
+```
+
+- キー値keyに入っているデータを変数valに読み込むときは、
+```
+val = db.get(key)
+```
+
+全体を読み込むときは、以下のようにします。
+```
+for key in db.getAll():
+    print(key + "=" + db.get(key))
+```
 
 --------------------------------------------------------------------------------
 
 # クライアントサイド開発
-SvelteKitと呼ばれるフレームワークを用いて、
-JavaScript+HTML、CSSでWeb画面を作成します。
+SvelteKitと呼ばれるフレームワークを用いて、JavaScript+HTML、CSSでWeb画面を作成します。
 
-https://svelte.jp/
+## ライブラリのインストール
 
-- ※いちから作りたい人は以下を実行
-npm create svelte@latest frontend
+```
+cd frontend
+npm i
+```
 
 ## 実行方法
+```
 cd frontend 
-npm i
 npm run dev
+```
+http://localhost:5173
+
+にアクセスして動きを確認してみましょう。
+
+## ソースの解説
+
+- Srcフォルダの下にページごとに+page.svelteファイルが1個あり、これを編集していきます。
+- Svelteファイルは以下3つのブロックに分かれます。
+- scriptブロック  JavaScriptでプログラムコードを書く
+- mainブロック    html文書構造を記述するブロック
+- styleブロック   CSSで、表示／装飾するスタイルを記載する
+- scriptブロックで宣言した変数の内容をHTMLに表示する場合は、{ }で括って記述します。
+- scriptブロックで動的に変更された値も即座にHTML側に反映されます。
+- styleブロックにはタグ名、クラス名で属性の設定先を指定します。
 
 --------------------------------------------------------------------------------
 
 # 開発の進め方
 
-- やりたいことをきめる
+## やりたいことをきめる
+ 
+ documents/design-document.mdの概要説明欄にやりたいこと、解決したい課題、実現したい機能をまとめてください。
 
-- 画面要素を考える
+## 画面構成を考える
 
-- やりとりするデータを決める
+作成するアプリが必要になる画面の一覧を画面構成に列挙していってください。
 
-- 画面構成を考える
+## 画面遷移を考える
 
-- APIとデータに格納する部分を作る
+できたら、それがどのような相関関係になるか、画面遷移を含めて、page-design.drawio.svgに描いてみてください。
 
+## やりとりするデータを決める
+
+どんなデータを表示したいか、データベースに格納したいか、を考えます。
+
+## APIとデータに格納する部分を作る
+
+フロントエンド／バックエンドの間でやりとりするデータの定義を考えて決めてください。
+JSONの実装形式とサンプルデータ、コメントを記載して、どんなデータをやりとりするか、を記述してください。
+
+--------------------------------------------------------------------------------
+
+# 参考リンク
+
+- [とほほのFlask入門](https://www.tohoho-web.com/ex/flask.html)
+- [とほほのCSS入門](https://www.tohoho-web.com/css/basic.htm)
+- [とほほのPython入門](https://www.tohoho-web.com/python/)
+- [Svelte](https://svelte.jp/)
+- [SvelteKit](https://kit.svelte.jp/)
