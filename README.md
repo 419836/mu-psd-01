@@ -138,7 +138,9 @@ http://localhost:5173
 
 Svelte kitで一からソースを作成したい場合は以下のコマンドでプロジェクトを作成できます。
 
+```
 npm create svelte@latest frontend
+```
 
 
 ## その他便利コマンド
@@ -154,7 +156,6 @@ npm run format
 cd frontend
 npm run lint
 ```
-
 
 
 --------------------------------------------------------------------------------
@@ -205,5 +206,3 @@ Githubリポジトリ画面上段にあるissueに沿って課題を進めてい
 - [Svelte](https://svelte.jp/)
 
 - [SvelteKit](https://kit.svelte.jp/)
-
-
