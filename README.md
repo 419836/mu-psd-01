@@ -18,7 +18,7 @@ winget install Git.Git
 winget install Microsoft.VisualStudioCode
 ```
 
-wingetが使えない場合等、個別の入手先は以下のリンクを参照してください。
+wingetが使えない場合やWindows以外の環境を利用する場合、個別の入手先は以下のリンクを参照してください。
 
 - https://nodejs.org/en
 - https://www.python.org/downloads/　
@@ -64,9 +64,13 @@ http://localhost:5000/
 ## ソースの解説
 
 - ソースファイルは基本的に、Server.py1個だけ。
+
 - 10行目までと最後2行は定型文なので、基本的に触る必要はありません。
+
 - @app.route(…)がURLを表します。
+
 - 次行の関数がそのロジック実装になります。
+
 - 関数の戻り値がBackendサーバで表示される値になります。
 
 ## データベースについて
@@ -115,13 +119,43 @@ http://localhost:5173
 ## ソースの解説
 
 - Srcフォルダの下にページごとに+page.svelteファイルが1個あり、これを編集していきます。
+
 - Svelteファイルは以下3つのブロックに分かれます。
+
 - scriptブロック  JavaScriptでプログラムコードを書く
+
 - mainブロック    html文書構造を記述するブロック
+
 - styleブロック   CSSで、表示／装飾するスタイルを記載する
+
 - scriptブロックで宣言した変数の内容をHTMLに表示する場合は、{ }で括って記述します。
+
 - scriptブロックで動的に変更された値も即座にHTML側に反映されます。
+
 - styleブロックにはタグ名、クラス名で属性の設定先を指定します。
+
+## 一からソースを生成する場合
+
+Svelte kitで一からソースを作成したい場合は以下のコマンドでプロジェクトを作成できます。
+
+npm create svelte@latest frontend
+
+
+## その他便利コマンド
+
+- ソースのフォーマット
+```
+cd frontend
+npm run format
+```
+
+- 文法チェック
+```
+cd frontend
+npm run lint
+```
+
+
 
 --------------------------------------------------------------------------------
 
@@ -146,7 +180,11 @@ http://localhost:5173
 ## APIとデータに格納する部分を作る
 
 フロントエンド／バックエンドの間でやりとりするデータの定義を考えて決めてください。
+
+
 JSONの実装形式とサンプルデータ、コメントを記載して、どんなデータをやりとりするか、を記述してください。
+
+
 --------------------------------------------------------------------------------
 
 # プロジェクトの進め方
@@ -159,7 +197,13 @@ Githubリポジトリ画面上段にあるissueに沿って課題を進めてい
 # 参考リンク
 
 - [とほほのFlask入門](https://www.tohoho-web.com/ex/flask.html)
+
 - [とほほのCSS入門](https://www.tohoho-web.com/css/basic.htm)
+
 - [とほほのPython入門](https://www.tohoho-web.com/python/)
+
 - [Svelte](https://svelte.jp/)
+
 - [SvelteKit](https://kit.svelte.jp/)
+
+
