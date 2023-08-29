@@ -28,7 +28,7 @@ def index():
 	return jsonify(ret)
 
 
-# データ登録サンプル関数
+# データ登録サンプル関数a
 # URLルーティングの<id>,<val>がそれぞれ関数の引数に入ってくる。
 @app.route("/adddata/<id>/<val>")
 def add_data(id,val):
