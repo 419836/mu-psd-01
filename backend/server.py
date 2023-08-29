@@ -16,7 +16,7 @@ db.set("123","いいいい")
 db.set("1234","うううう")
 
 # URL「/」に対応して処理する関数
-@app.route("/")
+@app.route("/help")
 def index():
     # 戻り値がそのままWebサイトに表示される。
     return jsonify({"result":"This is Backend API Server."})
