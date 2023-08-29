@@ -13,16 +13,17 @@
 </script>
 
 <main>
-  <h1 class="title">This is sample page. {title}</h1>
+  <h1 class="title">検索する</h1>
   <div />
   Search:<input bind:value={search} />
   <button on:click={findData}>Get Data.</button>
   <div />
   <hr />
+  
   <table>
     <tr>
-      <th>id</th>
-      <th>val</th>
+      <th>日付</th>
+      <th>内容</th>
     </tr>
     <!-- 繰り返し処理 datalistの各行をdataとして取り出し -->
     {#each datalist as data}

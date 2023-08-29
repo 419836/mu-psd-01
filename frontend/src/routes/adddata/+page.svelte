@@ -4,25 +4,29 @@
   let id; // htmlタグの方の{id}の部分と同じ変数
   let val; // htmlタグの方の{val}の部分と同じ変数
   let msg = ""; // メッセージ表示用変数
+  let date = new Date();
+  let year = date.getFullYear();
+  let month = ("0"+(date.getMonth()+1)).slice(-2);
+  let day = ("0"+date.getDate()).slice(-2);
+  let hour = date.getHours();
+  let minite = date.getMinutes();
+  let second = date.getSeconds();
+  let today = `${year}年${month}月${day}日${hour}時${minite}分${second}秒`;
 
   async function addData() {
     // データを送信する。
     const response = await fetch(
-      "http://localhost:5000/adddata/" + id + "/" + val
+      "http://localhost:5000/adddata/" + today + "/" + val
     );
-    id = ""; // 登録したら入力内容クリア
     val = ""; // 登録したら入力内容クリア
     msg = "Data added.";
   }
 </script>
 
 <main>
-  <h1 class="title">This is sample page. {title}</h1>
+  <h1 class="title">投稿する</h1>
   <div />
-
-  ID:<input bind:value={id} />
-  <div />
-  Val:<input bind:value={val} />
+  内容:<input bind:value={val} />
   <div />
   <button on:click={addData}>Add Data.</button>
   <div />
